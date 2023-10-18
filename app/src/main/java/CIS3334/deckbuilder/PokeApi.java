@@ -23,7 +23,7 @@ public class PokeApi {
 
     /**
      * Method to retrieve a card from the PokeAPI
-     * @return a random Pokemon from the original release
+     * @return matching card
      */
     public Card getCard(String query)
     {

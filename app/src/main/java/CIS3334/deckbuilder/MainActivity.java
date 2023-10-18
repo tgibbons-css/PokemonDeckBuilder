@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonViewInventory;
     Button buttonSearch;
     TextView textViewTest;
+    PokeApi pokeApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         buttonViewInventory = findViewById(R.id.buttonViewInventory);
         //buttonSearch = findViewById(R.id.buttonSearch);
         textViewTest = findViewById(R.id.textViewTest);
+        pokeApi = new PokeApi();
 
         setupButtonSearch();
         //setupRecyclerViewResults();
@@ -44,15 +46,14 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Brain Fart", "Button is clicked");
                 String query = editTextSearch.getText().toString();
                 Log.d("Brain Fart", "Text of query fetched");
-                //textViewTest.setText(query);
                 try {
-                    Card card = new PokeApi().getCard(query);
+                    Card card = pokeApi.getCard(query);
+                    textViewTest.setText(card.getName());
+                    Log.d("Brain Fart", "Query called");
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.d("Brain Fart", "Query failed to call.");
                 }
-                Log.d("Brain Fart", "Query called");
-                //textViewTest.setText(card.getName());
             }
         });
     }
