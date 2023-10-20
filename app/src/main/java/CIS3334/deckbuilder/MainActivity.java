@@ -31,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
         buttonViewInventory = findViewById(R.id.buttonViewInventory);
         //buttonSearch = findViewById(R.id.buttonSearch);
         textViewTest = findViewById(R.id.textViewTest);
-        pokeApi = new PokeApi();
+//        pokeApi = new PokeApi();
+        pokeApi = new PokeApi(this);
 
         setupButtonSearch();
         //setupRecyclerViewResults();
@@ -47,9 +48,18 @@ public class MainActivity extends AppCompatActivity {
                 String query = editTextSearch.getText().toString();
                 Log.d("Brain Fart", "Text of query fetched");
                 try {
-                    Card card = pokeApi.getCard(query);
-                    textViewTest.setText(card.getName());
-                    Log.d("Brain Fart", "Query called");
+                    if (pokeApi.cardHasBeenRetrieved) {
+                        // Card has been retrieved and is ready to view
+                        textViewTest.setText(pokeApi.retrievedCard.getName());
+                        Log.d("Brain Fart", "Card has been retreived with name = "+pokeApi.retrievedCard.getName());
+                    } else {
+//                    Card card = pokeApi.getCard(query);
+                        // Card has NOT been retrieved, call getCard to get this async
+                        pokeApi.getCardWithVolley(query);
+                        //pokeApi.getCardArrayWithVolley(query);
+
+                        Log.d("Brain Fart", "Card not ready ... calling GetCardWithVolley");
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.d("Brain Fart", "Query failed to call.");

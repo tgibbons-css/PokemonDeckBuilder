@@ -8,18 +8,19 @@ public class Card implements Serializable {
 
     private String id;
     private String name;
-    private ArrayList<String> types;
+
+    //private ArrayList<String> types;
 
     public Card(String id, String name, ArrayList<String> types){
         this.id = id;
         this.name = name;
-        this.types = types;
+        //this.types = types;
     }
 
     public Card(){
         id = "";
         name = "";
-        types = new ArrayList<>();
+        //types = new ArrayList<>();
     }
 
     public String getName() {
@@ -30,11 +31,11 @@ public class Card implements Serializable {
         return id;
     }
 
-    public String getTypes() {
-        String allTypes = "";
-        for(String type : types) {
-            allTypes += type + "\n";
-        }
-        return allTypes;
-    }
+//    public String getTypes() {
+//        String allTypes = "";
+//        for(String type : types) {
+//            allTypes += type + "\n";
+//        }
+//        return allTypes;
+//    }
 }

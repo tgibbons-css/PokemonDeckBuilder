@@ -32,7 +32,8 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultViewHolder> {
     public void onBindViewHolder(@NonNull ResultViewHolder holder, int position) {
         holder.textViewName.setText(cards.get(position).getName());
         holder.textViewId.setText(cards.get(position).getId());
-        holder.textViewTypes.setText(cards.get(position).getTypes());
+        //TODO: add this types back into the view
+//        holder.textViewTypes.setText(cards.get(position).getTypes());
     }
 
     @Override
